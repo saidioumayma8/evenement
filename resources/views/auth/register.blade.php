@@ -45,6 +45,14 @@
                                 name="password_confirmation" required />
             </div>
 
+            <div>
+                <label for="role"></label>
+                <select name="role" id="role">
+                    <option value="organisateur">organisateur</option>
+                    <option value="user">User</option>
+                </select>
+            </div>
+
             <div class="flex items-center justify-end mt-4">
                 <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
                     {{ __('Already registered?') }}
@@ -52,6 +60,9 @@
 
                 <x-button class="ml-4">
                     {{ __('Register') }}
+                </x-button>
+                <x-button class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('organisateur.index') }}">
+                    {{ __('organisateur') }}
                 </x-button>
             </div>
         </form>

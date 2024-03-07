@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use App\Models\Event;
 
 class RegisteredUserController extends Controller
 {
@@ -37,7 +38,15 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'role' => 'required',
         ]);
+        if ($request->input('role') == 'organisateur') {
+            $role = 'organisateur';
+
+        }
+        else {
+            $role = 'user';
+        }
 
         $user = User::create([
             'name' => $request->name,
@@ -45,8 +54,9 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        event(new Registered($user));
 
+        event(new Registered($user));
+        $user->assignRole($role);
         Auth::login($user);
 
         return redirect(RouteServiceProvider::HOME);

@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\IndexController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\eventController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -30,6 +31,13 @@ Route::middleware(['auth', 'role:admin'])->name('admin.')->prefix('admin')->grou
     Route::delete('/users/{user}/roles/{role}', [UserController::class, 'removeRole'])->name('users.roles.remove');
     Route::post('/users/{user}/permissions', [UserController::class, 'givePermission'])->name('users.permissions');
     Route::delete('/users/{user}/permissions/{permission}', [UserController::class, 'revokePermission'])->name('users.permissions.revoke');
+});
+Route::middleware(['auth', 'role:organisateur'])->group(function () {
+    Route::get('/evenement', [eventController::class, 'index'])->name('organisateur.index');
+    Route::get('/create',
+    [eventController::class, 'create'])->name('organisateur.create');
+    Route::post('/event', [eventController::class, 'store'])->name('organisateur.store');
+
 });
 
 require __DIR__ . '/auth.php';
