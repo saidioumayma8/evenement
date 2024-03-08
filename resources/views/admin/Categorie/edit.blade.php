@@ -46,7 +46,7 @@
                         @endif
                     </div>
                     <div class="max-w-xl mt-6">
-                        <form method="POST" action="{{ route('admin.categories.permissions', $category->id) }}">
+                        <form method="POST" action="{{ route('categories.permissions', $category->id) }}">
                             @csrf
                             <div class="sm:col-span-6">
                                 <label for="permission"

@@ -20,6 +20,8 @@ class eventController extends Controller
      */
     public function index()
     {
+        $url = route('organisateur.index');
+        
         return view('organisateur.index');
     }
     public function create()

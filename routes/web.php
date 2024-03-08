@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\eventController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\CategorieController;
 
 
 Route::get('/', function () {
@@ -31,6 +32,9 @@ Route::middleware(['auth', 'role:admin'])->name('admin.')->prefix('admin')->grou
     Route::delete('/users/{user}/roles/{role}', [UserController::class, 'removeRole'])->name('users.roles.remove');
     Route::post('/users/{user}/permissions', [UserController::class, 'givePermission'])->name('users.permissions');
     Route::delete('/users/{user}/permissions/{permission}', [UserController::class, 'revokePermission'])->name('users.permissions.revoke');
+    Route::resource('/categories', CategorieController::class);
+    Route::post('/categories/{category}/permissions', [CategorieController::class, 'assignPermission'])->name('categories.permissions');
+    Route::delete('/categories/{category}/permissions/{permission}', [CategorieController::class, 'removePermission'])->name('categories.permissions.remove');
 });
 Route::middleware(['auth', 'role:organisateur'])->group(function () {
     Route::get('/evenement', [eventController::class, 'index'])->name('organisateur.index');
