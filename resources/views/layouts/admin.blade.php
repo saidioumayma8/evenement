@@ -80,8 +80,10 @@
                     :active="request()->routeIs('admin.permissions.index')">Permissions</x-admin-link>
                 <x-admin-link :href="route('admin.users.index')" :active="request()->routeIs('admin.users.index')">Users
                 </x-admin-link>
-                <x-admin-link :href="route('admin.categorie.index')" :active="request()->routeIs('admin.Categorie.index')">categories
+                <x-admin-link :href="route('admin.categorie.index')" :active="request()->routeIs('admin.Categorie.index')">Categories
                 </x-admin-link>
+                <x-admin-link :href="route('admin.evenement.index')" :active="request()->routeIs('admin.evenement.index')">Events</x-admin-link>
+
                 <div @click.away="open = false" class="relative" x-data="{ open: false }">
                     <button @click="open = !open"
                         class="flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark:bg-transparent dark:focus:text-white dark:hover:text-white dark:focus:bg-gray-600 dark:hover:bg-gray-600 md:block hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">

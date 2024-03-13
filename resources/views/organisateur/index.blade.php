@@ -5,24 +5,44 @@
     </x-slot>
 
     <x-slot name="slot">
-        @if (isset($event) && !empty($event))
+        @if (isset($events) && !empty($events))
             <div class="event-card">
-                <div class="event-card__body">
-                    <div class="event-card__info">
-                        <h2 class="event-card__title">{{ $event->title }}</h2>
-                        <p class="event-card__description">{{ $event->description }}</p>
-                        <div class="event-card__details">
-                            <div class="event-card__date">{{ $event->date }}</div>
-                            <div class="event-card__location">{{ $event->lieu }}</div>
-                            <div class="event-card__duration">{{ $event->durai }}</div>
-                            <div class="event-card__price">Price: {{ $event->prix }}</div>
-                            <!-- Add more fields as needed -->
+                @foreach($events as $event)
+                <div class="bg-gray-50 border border-gray-200 rounded p-6">
+
+                    <div class="flex">
+                        <img class="w-50 h-20" src="storage/{{ $event->image }}" alt="">
+                        <div>
+                            <h3 class="text-2xl">
+                                <a href="show.html">{{ $event->title }}</a>
+                            </h3>
+                            <ul class="flex">
+
+
+                                <li
+                                    class="flex items-center justify-center bg-black text-white rounded-xl py-1 px-3 mr-2 text-xs"
+                                >
+                                    <a href="#"> {{ $event->date }}</a>
+                                </li>
+                                <li
+                                    class="flex items-center justify-center bg-black text-white rounded-xl py-1 px-3 mr-2 text-xs"
+                                >
+                                    <a href="#"> {{ $event->durai }}</a>
+                                </li>
+                                <li
+                                    class="flex items-center justify-center bg-black text-white rounded-xl py-1 px-3 mr-2 text-xs"
+                                >
+                                    <a href="#">{{ $event->prix }}Dh</a>
+                                </li>
+                            </ul>
+                            <div class="text-lg mt-4">
+                                <i class="fa-solid fa-location-dot"></i>{{ $event->lieu }}
+                            </div>
                         </div>
                     </div>
-                    <div class="event-card__image">
-                        <img src="{{ asset('storage/' . $event->image) }}" alt="Event Image">
-                    </div>
                 </div>
+                @endforeach
+                <a href="{{ route('organisateur.create') }}">Add Event</a>
             </div>
         @else
             <div class="flex flex-col items-center justify-center h-screen">

@@ -11,13 +11,13 @@ class CategorieController extends Controller
 {
     public function index()
     {
-        $categories = Permission::all();
-        return view('admin.categories.index', compact('categories'));
+        $categorie = Permission::all();
+        return view('admin.categorie.index', compact('categorie'));
     }
 
     public function create()
     {
-        return view('admin.categories.create');
+        return view('admin.categorie.create');
     }
 
     public function store(Request $request)
@@ -26,13 +26,13 @@ class CategorieController extends Controller
 
         Permission::create($validated);
 
-        return redirect()->route('admin.categories.index')->with('message', 'Categorie created.');
+        return redirect()->route('admin.categorie.index')->with('message', 'Categorie created.');
     }
 
     public function edit(Permission $categorie)
     {
         $roles = Role::all();
-        return view('admin.categories.edit', compact('categorie', 'roles'));
+        return view('admin.categorie.edit', compact('categorie', 'roles'));
     }
 
     public function update(Request $request, Permission $categorie)
@@ -40,7 +40,7 @@ class CategorieController extends Controller
         $validated = $request->validate(['name' => 'required']);
         $categorie->update($validated);
 
-        return redirect()->route('admin.categories.index')->with('message', 'Categorie updated.');
+        return redirect()->route('admin.categorie.index')->with('message', 'Categorie updated.');
     }
 
     public function destroy(Permission $categorie)

@@ -21,10 +21,20 @@
                     </x-nav-link>
                     @endrole
                     @role('organisateur')
-                    <x-nav-link :href="route('organisateur.index')" :active="request()->routeIs('organisateur.index')">
+                    <x-nav-link :href="route('organisateur.create')" :active="request()->routeIs('organisateur.create')">
                         {{ __('Events') }}
                     </x-nav-link>
                     @endrole
+                    {{-- @role('organisateur')
+                    <x-nav-link :href="route('reservationindex_reserv')" :active="request()->routeIs('organisateur.index')">
+                        {{ __('reservation') }}
+                    </x-nav-link>
+                    @endrole
+                    @role('user')
+                    <x-nav-link :href="route('reservationindex_reserv')" :active="request()->routeIs('reservationindex_reserv')">
+                        {{ __('reservation') }}
+                    </x-nav-link>
+                    @endrole --}}
                 </div>
             </div>
 
